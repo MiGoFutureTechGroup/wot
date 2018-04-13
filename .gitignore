@@ -25,4 +25,4 @@ nbdist/
 .nb-gradle/
 
 ### private config
-application.properties
+application-dev.properties
