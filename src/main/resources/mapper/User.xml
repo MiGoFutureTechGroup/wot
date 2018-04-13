@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.migotech.wot.user.dao.UserDao">
+
+    <sql id="Base_Column_List">
+        id,
+        role,
+        `name`,
+        company,
+        qq,
+        phone_number,
+        landline_number,
+        email,
+        est_virtual,
+        regtime,
+        ctime
+    </sql>
+
+    <select id="findByCompanyId" parameterType="Long" resultType="User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM wot_user
+        WHERE company=#{companyId}
+    </select>
+
+    <select id="findOne" resultType="User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM wot_user
+        WHERE id=#{id}
+    </select>
+
+    <select id="login" resultType="User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM wot_user
+        WHERE name=#{name} AND password=#{password}
+    </select>
+
+    <update id="editOne">
+        UPDATE wot_user
+        SET
+            id=#{user.id},
+            role=#{user.role},
+            `name`=#{user.name},
+            company=#{user.company},
+            qq=#{user.qq},
+            phone_number=#{user.phoneNumber},
+            landline_number=#{user.landlineNumber},
+            email=#{user.email},
+            est_virtual=#{user.estVirtual},
+            regtime=#{user.regtime}
+        WHERE id=#{user.id}
+    </update>
+
+</mapper>
